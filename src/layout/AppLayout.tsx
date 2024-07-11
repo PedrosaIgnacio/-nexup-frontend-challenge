@@ -10,7 +10,7 @@ export const AppLayout: React.FC<AppLayoutProps> = (props) => {
   return (
     <div className="bg-[#EFF2F8] min-h-screen w-full">
       <AppHeader />
-      <div className="px-10 py-20 ">{children}</div>
+      <div className="px-2 md:px-20 lg:px-40">{children}</div>
     </div>
   );
 };
