@@ -9,5 +9,9 @@ export const ProductList: React.FC<ProductListProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   productList,
 }) => {
-  return <div />;
+  return (
+    <div className="">
+      <p>Hola</p>
+    </div>
+  );
 };
