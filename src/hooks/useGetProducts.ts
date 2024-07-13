@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
-import ProductService from '../services/product.service';
+import { getProductList } from '../api/products';
 
 export const useGetProducts = (
   category: ProductCategory | 'all',
@@ -19,7 +19,7 @@ export const useGetProducts = (
   ) => {
     try {
       setIsLoading(true);
-      const res: Product[] = await ProductService.getProducts(
+      const res: Product[] = await getProductList(
         category_param,
         stock_param,
         search_param,
