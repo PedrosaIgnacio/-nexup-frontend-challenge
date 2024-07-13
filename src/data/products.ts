@@ -9,6 +9,7 @@ export const Products: Product[] = [
     status: ProductStatus.Active,
     category: ProductCategory.Fruit,
     price: 10.2,
+    stock: 10,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const Products: Product[] = [
     status: ProductStatus.Active,
     category: ProductCategory.Fruit,
     price: 10.8,
+    stock: 0,
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ export const Products: Product[] = [
     status: ProductStatus.Active,
     category: ProductCategory.Vegetables,
     price: 20.5,
+    stock: 20,
   },
   {
     id: 4,
@@ -30,13 +33,15 @@ export const Products: Product[] = [
     status: ProductStatus.Active,
     category: ProductCategory.Vegetables,
     price: 100.0,
+    stock: 100,
   },
   {
     id: 5,
     name: 'Chicken Breast',
     status: ProductStatus.Active,
     category: ProductCategory.Meat,
-    price: 50.0,
+    price: 150.0,
+    stock: 15,
   },
   {
     id: 6,
@@ -44,5 +49,6 @@ export const Products: Product[] = [
     status: ProductStatus.Active,
     category: ProductCategory.Meat,
     price: 120.0,
+    stock: 2,
   },
 ];

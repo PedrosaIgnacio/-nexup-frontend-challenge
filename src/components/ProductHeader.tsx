@@ -1,4 +1,4 @@
-const ProductHeader: React.FC = () => {
+export const ProductHeader: React.FC = () => {
   return (
     <div className="col-span-10 grid grid-cols-10">
       <div className="col-span-3 capitalize px-2 sm:px-6 text-left">
@@ -16,13 +16,16 @@ const ProductHeader: React.FC = () => {
           categoría
         </p>
       </div>
-      <div className="col-span-2 capitalize px-2 sm:px-6 text-left">
+      <div className="col-span-1 capitalize px-2 sm:px-6 text-left">
         <p className="text-xs sm:text-sm font-semibold tracking-wide capiptalize text-[#4F4F4F]">
           precio
+        </p>
+      </div>
+      <div className="col-span-1 capitalize px-2 sm:px-6 text-left">
+        <p className="text-xs sm:text-sm font-semibold tracking-wide capiptalize text-[#4F4F4F]">
+          stock
         </p>
       </div>
     </div>
   );
 };
-
-export default ProductHeader;

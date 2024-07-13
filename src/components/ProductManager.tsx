@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useDebounce } from 'use-debounce';
 import { ProductList } from './ProductList';
 import { CategoryFilter } from './CategoryFilter';
 import { ProductCategory } from '../models/ProductCategory';
 import { useGetProducts } from '../hooks/useGetProducts';
+import { StockFilter } from './StockFilter';
+import { FullTextFilter } from './FullTextFilter';
 
 export const ProductManager: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<
     ProductCategory | 'all'
   >('all');
-  const { error, isLoading, products } = useGetProducts(selectedCategory);
-  console.log('🚀 ~ products:', products);
-  console.log('🚀 ~ isLoading:', isLoading);
-  console.log('🚀 ~ error:', error);
+  const [selectedStockFilter, setSelectedStockFilter] = useState<
+    'available' | 'unavailable' | 'all'
+  >('all');
+  const [fullText, setFullText] = useState<string>('');
+  const [fullTextValue] = useDebounce(fullText, 1000);
+
+  const { isLoading, products } = useGetProducts(
+    selectedCategory,
+    selectedStockFilter,
+    fullTextValue,
+  );
 
   return (
     <div>
@@ -20,10 +31,17 @@ export const ProductManager: React.FC = () => {
           Productos
         </p>
       </div>
-      <CategoryFilter
-        setSelectedCategory={setSelectedCategory}
-        selectedCategory={selectedCategory}
-      />
+      <div className="w-full grid grid-cols-12 items-end">
+        <FullTextFilter fullText={fullText} setFullText={setFullText} />
+        <CategoryFilter
+          setSelectedCategory={setSelectedCategory}
+          selectedCategory={selectedCategory}
+        />
+        <StockFilter
+          selectedStockFilter={selectedStockFilter}
+          setSelectedStockFilter={setSelectedStockFilter}
+        />
+      </div>
       {isLoading ? (
         <div className="col-span-10 py-3 px-6 text-cente items-center justify-center flex">
           <div role="status">

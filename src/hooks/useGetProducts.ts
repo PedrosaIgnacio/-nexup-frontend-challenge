@@ -3,15 +3,27 @@ import { Product } from '../models/Product';
 import { ProductCategory } from '../models/ProductCategory';
 import ProductService from '../services/product.service';
 
-export const useGetProducts = (category: ProductCategory | 'all') => {
+export const useGetProducts = (
+  category: ProductCategory | 'all',
+  stock: 'available' | 'unavailable' | 'all',
+  search: string,
+) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
 
-  const get = async (category_param: ProductCategory | 'all') => {
-    setIsLoading(true);
+  const get = async (
+    category_param: ProductCategory | 'all',
+    stock_param: 'available' | 'unavailable' | 'all',
+    search_param: string,
+  ) => {
     try {
-      const res: Product[] = await ProductService.getProducts(category_param);
+      setIsLoading(true);
+      const res: Product[] = await ProductService.getProducts(
+        category_param,
+        stock_param,
+        search_param,
+      );
       setProducts(res);
     } catch (err: unknown) {
       setError(err);
@@ -21,8 +33,8 @@ export const useGetProducts = (category: ProductCategory | 'all') => {
   };
 
   useEffect(() => {
-    get(category);
-  }, [category]);
+    get(category, stock, search);
+  }, [category, stock, search]);
 
   return {
     products,
